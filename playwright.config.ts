@@ -44,19 +44,19 @@ export default defineConfig({
       name: 'chromium',
       //dependencies: ["setup"],
       //use: { ...devices['Desktop Chrome'], storageState: "./LoginAuthSL.json"},
-      use: { ...devices['Desktop Chrome'],},
+      use: { ...devices['Desktop Chrome'], screenshot:'only-on-failure'},
     },
 
     {
       name: 'firefox',
       //dependencies: ["setup"],
-      use: { ...devices['Desktop Firefox']},
+      use: { ...devices['Desktop Firefox'], screenshot:'only-on-failure'},
     },
 
     {
       name: 'webkit',
       //dependencies: ["setup"],
-      use: { ...devices['Desktop Safari']},
+      use: { ...devices['Desktop Safari'], screenshot:'only-on-failure'},
     },
 
     /* Test against mobile viewports. */
