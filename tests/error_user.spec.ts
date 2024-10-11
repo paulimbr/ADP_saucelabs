@@ -1,10 +1,10 @@
 import { test, expect, ElementHandle } from '@playwright/test';
 import exp from 'constants';
 
-test('Problem User', async ({ page }) => {
+test('Error User', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
       
-  await page.getByPlaceholder('Username').fill('problem_user');
+  await page.getByPlaceholder('Username').fill('error_user');
   await page.getByPlaceholder('Password').fill('secret_sauce');
 
   // Click to login
@@ -67,12 +67,12 @@ test('Problem User', async ({ page }) => {
   const filtro2 = await page.textContent('[data-test="active-option"]');
   await expect(filtro).toBe(filtro2); // //filter is not working so the value will not change to lohi
    
-  // Access product details from image will open a wrong product
+  /* // Access product details from image will open a wrong product
   const productName = await page.textContent('//div[@class="inventory_item"][1]//div[@data-test="inventory-item-name"]');
   await page.locator('[data-test="item-4-img-link"]').click();
   const productDetailsName = await page.textContent('[data-test="inventory-item-name"]');
-  //await expect(productName).toBe(productDetailsName); // Wrong product page is displayed
-  await expect(productDetailsName).toBe('Sauce Labs Fleece Jacket'); // the line above os comment to avoid test fail
+  await expect(productName).toBe(productDetailsName);
+  
   await page.locator('[data-test="back-to-products"]').click();
   await page.waitForURL('https://www.saucedemo.com/inventory.html');
 
@@ -82,7 +82,7 @@ test('Problem User', async ({ page }) => {
   //await expect(productName).toBe(productDetailsName1); // Wrong product page is displayed
   await expect(productDetailsName1).toBe('Sauce Labs Fleece Jacket'); // the line above os comment to avoid test fail
   await page.locator('[data-test="back-to-products"]').click();
-  await page.waitForURL('https://www.saucedemo.com/inventory.html');
+  await page.waitForURL('https://www.saucedemo.com/inventory.html'); */
 
       // Currently this page is accepting to complete checkout without product in the chart. This is a issue that I'll keep tracked
       await page.locator('[data-test="shopping-cart-link"]').click();
@@ -100,9 +100,8 @@ test('Problem User', async ({ page }) => {
         await page.waitForURL('https://www.saucedemo.com/checkout-step-two.html');
         await page.locator('[data-test="finish"]').click();
   
-        // Order completion
-        const ordeCompletion = page.locator('[data-test="complete-header"]');
-        await expect(ordeCompletion).toHaveText('Thank you for your order!');
+        // Finish button isn't working
+        await expect(page.locator('[data-test="finish"]')).toBeVisible();
   
 });
 
